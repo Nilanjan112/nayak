@@ -1,0 +1,56 @@
+.Animated-Radial-Menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #2f363e;
+}
+
+.Animated-Radial-Menu .menu {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Animated-Radial-Menu .menu .toggle {
+  position: absolute;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 100;
+  font-size: 2em;
+  background: #2f363e;
+  border: 2px solid #fff;
+  transition: transform 0.5s;
+}
+
+.Animated-Radial-Menu .menu li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  color: var(--clr);
+  border: 2px solid var(--clr);
+  font-size: 2em;
+}
+
+.Animated-Radial-Menu .menu li a:hover {
+  background: var(--clr);
+  color: #333;
+  font-size: 1.5em;
+  transform: rotate(calc(-45deg + var(--angle)));
+  transition: 0.3s;
+  box-shadow: 0 10px var(--elr), 30px var(--clr), 50px var(--clr);
+}
+
+.Animated-Radial-Menu .menu.active .toggle {
+  transform: rotate(315deg);
+  box-shadow: 0 0 10px var(--clr), 30px var(--clr), 0 50px var(--clr);
+}

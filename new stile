@@ -1,0 +1,157 @@
+<div class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="active">Data</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="page-heading"> <i class="glyphicon glyphicon-edit"></i> Manage Order</div>
+            </div> <!-- /panel-heading -->
+            <div class="panel-body">
+
+                <div class="remove-messages"></div>
+
+                <div class="div-action pull pull-right" style="padding-bottom:20px;">
+                    <button class="btn btn-default button1" data-toggle="modal" data-target="#createOrderModal"> <i class="glyphicon glyphicon-plus-sign"></i> Create Order </button>
+                </div> <!-- /div-action -->
+
+                <table class="table" id="manageOrderTable">
+                    <thead>
+                    <tr>
+                        <th>Order Date</th>
+                        <th>Customer Name</th>
+                        <th>Customer Phone</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                </table>
+
+            </div> <!-- /panel-body -->
+        </div> <!-- /panel -->
+    </div> <!-- /col-md-12 -->
+</div> <!-- /row -->
+
+
+
+
+
+<!-- create order -->
+<div class="modal fade" tabindex="-1" role="dialog" id="createOrderModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><i class="glyphicon glyphicon-plus"></i> Create Order</h4>
+            </div>
+            <form class="form-horizontal" id="submitOrderForm" action="{{route('orders.store')}}" method="post">
+                <div class="modal-body">
+
+                    {{csrf_field()}}
+
+                    <div class="form-group">
+                        <label for="customer_name" class="control-label col-sm-4">Customer Name:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="customer_name" name="customer_name" placeholder="Customer Name" required>
+                        </div>
+                    </div> <!-- /form-group-->
+
+                    <div class="form-group">
+                        <label for="customer_phone" class="control-label col-sm-4">Customer Phone:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="customer_phone" name="customer_phone" placeholder="Customer Phone" required>
+                        </div>
+                    </div> <!-- /form-group-->
+
+                    <div class="form-group">
+                        <label for="customer_address" class="control-label col-sm-4">Customer Address:</label>
+                        <div class="col-sm-8">
+                            <textarea type="text" class="form-control" id="customer_address" name="customer_address" placeholder="Customer Address" required></textarea>
+                        </div>
+                    </div> <!-- /form-group-->
+
+                    <div class="form-group">
+                        <label for="status" class="control-label col-sm-4">Status:</label>
+                        <div class="col-sm-8">
+                            <select type="text" class="form-control" id="status" name="status" required>
+                                <option value="">~~SELECT~~</option>
+                                <option value="Ordered">Ordered</option>
+                                <option value="Delivered">Delivered</option>
+                            </select>
+                        </div>
+                    </div> <!-- /form-group-->
+
+                </div> <!-- /modal-body -->
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div> <!-- /modal-footer -->
+            </form> <!-- /.form -->
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->
+
+<!-- edit order -->
+<div class="modal fade" tabindex="-1" role="dialog" id="editOrderModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><i class="glyphicon glyphicon-edit"></i> Edit Order</h4>
+            </div>
+            <form class="form-horizontal" id="editOrderForm" action="{{route('orders.update',0)}}" method="post">
+                <div class="modal-body">
+
+                    {{csrf_field()}}
+                    {{method_field('PUT')}}
+
+                    <div class="form-group">
+                        <label for="customer_name" class="control-label col-sm-4">Customer Name:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="customer_name" name="customer_name" placeholder="Customer Name" required>
+                        </div>
+                    </div> <!-- /form-group-->
+
+                    <div class="form-group">
+                        <label for="customer_phone" class="control-label col-sm-4">Customer Phone:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="customer_phone" name="customer_phone" placeholder="Customer Phone" required>
+                        </div>
+                    </div> <!-- /form-group-->
+
+                    <div class="form-group">
+                        <label for="customer_address" class="control-label col-sm-4">Customer Address:</label>
+                        <div class="col-sm-8">
+                            <textarea type="text" class="form-control" id="customer_address" name="customer_address" placeholder="Customer Address" required></textarea>
+                        </div>
+                    </div> <!-- /form-group-->
+
+                    <div class="form-group">
+                        <label for="status" class="control-label col-sm-4">Status:</label>
+                        <div class="col-sm-8">
+                            <select type="text" class="form-control" id="status" name="status" required>
+                                <option value="">~~SELECT~~</option>
+                                <option value="Ordered">Ordered</option>
+                                <option value="Delivered">Delivered</option>
+                            </select>
+                        </div>
+                    </div> <!-- /form-group-->
+
+                </div> <!-- /modal-body -->
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div> <!-- /modal-footer -->
+            </form> <!-- /.form -->
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /
